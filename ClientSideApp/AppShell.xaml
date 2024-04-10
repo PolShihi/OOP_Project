@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ClientSideApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ClientSideApp"
+    Shell.TabBarIsVisible="False"
+    xmlns:startupPages="clr-namespace:ClientSideApp.Views.Startup">
+
+    <ShellContent
+    Title="Login Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
+    ContentTemplate="{DataTemplate startupPages:LoginPage}"
+    Route="LoginPage" />
+
+
+    <Shell.FlyoutFooter>
+        <StackLayout Padding="20">
+            <Button Text="Sign Out" Command="{Binding SignOutCommand}" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>

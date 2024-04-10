@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.AdminUsersPage"
+             xmlns:Models="clr-namespace:ClientSideApp.Models"
+             xmlns:ViewModels="clr-namespace:ClientSideApp.ViewModels"
+             xmlns:Selectors="clr-namespace:ClientSideApp.Selectors"
+             x:DataType="ViewModels:AdminUsersViewModel"
+             Title="AdminUsersPage">
+    
+    <ContentPage.Resources>
+        <Selectors:UserTemplateSelector x:Key="UserTemplateSelector"/>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout Padding="5">
+        <!--<VerticalStackLayout>
+            <Label Text="Chosen User" FontSize="18" FontAttributes="Bold"/>
+            <Label Text="{Binding ChosenUser.FullName}"/>
+            <Label Text="{Binding ChosenUser.Email}"/>
+            <Label Text="{Binding ChosenUser.PhoneNumber}"/>
+            <Label Text="{Binding ChosenUser.Role, StringFormat='Role: {0}'}"/>
+            <Label Text="{Binding ChosenUser.Id, StringFormat='Id: {0}'}"/>
+        </VerticalStackLayout>-->
+        <CollectionView ItemsSource="{Binding Users}"
+                        ItemTemplate="{StaticResource UserTemplateSelector}">
+            <!--<CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type Models:UserInfo}">
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding FullName}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Email}" />
+                            <Label Text="{Binding Role, StringFormat='Role: {0}'}" />
+                            <Button BackgroundColor="Red"
+                                    Text="Delete"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AdminUsersViewModel}}, Path=DeleteUserCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>-->
+        </CollectionView>
+        <Button Text="Register"
+                Command="{Binding GoToRegisterCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

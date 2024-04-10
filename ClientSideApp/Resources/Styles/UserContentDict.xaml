@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:ClientSideApp.ViewModels">
+
+    <DataTemplate x:Key="NotYouUserTemplate">
+        <Frame>
+            <VerticalStackLayout>
+                <Label Text="{Binding FullName}" FontAttributes="Bold"/>
+                <Label Text="{Binding Email}" />
+                <Label Text="{Binding Role, StringFormat='Role: {0}'}" />
+                <Button BackgroundColor="Red"
+                Text="Delete"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:AdminUsersViewModel}}, Path=DeleteUserCommand}"
+                CommandParameter="{Binding .}"/>
+            </VerticalStackLayout>
+        </Frame>
+    </DataTemplate>
+
+    <DataTemplate x:Key="YouUserTemplate">
+        <Frame IsEnabled="False">
+            <VerticalStackLayout>
+                <Label Text="{Binding FullName}" FontAttributes="Bold"/>
+                <Label Text="{Binding Email}" />
+                <Label Text="{Binding Role, StringFormat='Role: {0}'}" />
+            </VerticalStackLayout>
+        </Frame>
+    </DataTemplate>
+
+</ResourceDictionary>
