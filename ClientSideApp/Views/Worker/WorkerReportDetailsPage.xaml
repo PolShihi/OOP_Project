@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.Worker.WorkerReportDetailsPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             x:DataType="viewModels:WorkerReportDetailsViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="Report">
+    
+    <Grid RowDefinitions="10*, *, *, *"
+      ColumnDefinitions="*, 30*, *"
+      IsEnabled="{Binding IsNotBusy}">
+        <Frame BorderColor="LightGray"
+           CornerRadius="0"
+           Padding="20, 0, 40, 0"
+           Margin="0"
+           Grid.Row="0"
+           Grid.Column="1">
+            <ScrollView>
+                <VerticalStackLayout Spacing="25">
+                    <VerticalStackLayout>
+                        <Label Text="First name"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding FirstName}" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout>
+                        <Label Text="Last name"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding LastName}" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout>
+                        <Label Text="Email"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Email}" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout>
+                        <Label Text="Phone number"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding PhoneNumber}" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout>
+                        <Label Text="Text of report" 
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Text}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Answer" />
+                        <Editor Text="{Binding Answer}"
+                                AutoSize="TextChanges"/>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Is answered?"
+                               VerticalOptions="Center"
+                               VerticalTextAlignment="Center"/>
+                        <CheckBox IsChecked="{Binding IsAnswered}"/>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <Button Text="Save" Command="{Binding SaveReportCommand}"
+            Grid.Row="2"
+            Grid.Column="1"/>
+    </Grid>
+</ContentPage>

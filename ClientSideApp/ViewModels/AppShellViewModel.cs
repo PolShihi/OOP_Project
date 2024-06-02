@@ -1,10 +1,11 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using ClientSideApp.Models;
+using ClientSideApp.Views;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClientSideApp.Views.Startup;
 
 namespace ClientSideApp.ViewModels
 {
@@ -12,13 +13,20 @@ namespace ClientSideApp.ViewModels
     {
 
         [RelayCommand]
-        async Task SignOut()
+        async Task LogOut()
         {
-            if (Preferences.ContainsKey(nameof(App.UserDetails)))
+            if (IsBusy) return;
+
+            try
             {
-                Preferences.Remove(nameof(App.UserDetails));
+                IsBusy = true;
+
+                await AppConstant.LogOut();
             }
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

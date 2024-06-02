@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             x:DataType="viewModels:ManagerCeremonyDetailsViewModel"
+             x:Class="ClientSideApp.Views.Manager.ManagerCeremonyDetailsPage"
+             Shell.TabBarIsVisible="False"
+             Title="Ceremony">
+    <Grid RowDefinitions="10*, *, *, *"
+          ColumnDefinitions="*, 30*, *"
+          IsEnabled="{Binding IsNotBusy}">
+        <Frame BorderColor="LightGray"
+               CornerRadius="0"
+               Padding="20, 0, 40, 0"
+               Margin="0"
+               Grid.Row="0"
+               Grid.Column="1">
+            <ScrollView>
+                <Grid RowDefinitions="*, *, *"
+                      RowSpacing="15">
+                    <VerticalStackLayout Grid.Row="0">
+                        <Label Text="Name" />
+                        <Entry Text="{Binding Name}" />
+                        <Label Text="{Binding NameError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label Text="Price" />
+                        <Entry Text="{Binding Price}" />
+                        <Label Text="{Binding PriceError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="2">
+                        <Label Text="Description" />
+                        <Entry Text="{Binding Description}" />
+                        <Label Text="{Binding DescriptionError}" TextColor="Red" />
+                    </VerticalStackLayout>
+                </Grid>
+            </ScrollView>
+        </Frame>
+
+        <Button Text="Save" Command="{Binding SaveCeremonyCommand}"
+                Grid.Row="2"
+                Grid.Column="1"/>
+    </Grid>
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿using ClientSideApp.Models;
+﻿using MyModel.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +11,15 @@ namespace ClientSideApp.Selectors
     {
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            var user = item as UserInfo;
+            var user = item as UserSession;
             var userTemplate = new object();
-            
 
-            if (user.Email == App.UserDetails.Email) 
+
+            if (user.Email == App.UserSession.Email)
             {
                 Application.Current.Resources.TryGetValue("YouUserTemplate", out userTemplate);
             }
-            else 
+            else
             {
                 Application.Current.Resources.TryGetValue("NotYouUserTemplate", out userTemplate);
             }

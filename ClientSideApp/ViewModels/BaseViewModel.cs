@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClientSideApp.ViewModels
 {
-    public partial class BaseViewModel : ObservableObject
+    public partial class BaseViewModel : ObservableValidator
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]

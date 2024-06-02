@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.Admin.AdminUsersPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             xmlns:selectors="clr-namespace:ClientSideApp.Selectors"
+             x:DataType="viewModels:AdminUsersViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="Users">
+    <ContentPage.Resources>
+        <selectors:UserTemplateSelector x:Key="UserTemplateSelector"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="10*, *, *, *"
+          ColumnDefinitions="*, 30*, *"
+          IsEnabled="{Binding IsNotBusy}">
+        <Frame BorderColor="LightGray"
+               Grid.Column="1"
+               CornerRadius="0"
+               Padding="0"
+               Margin="0">
+            <CollectionView ItemsSource="{Binding Users}"
+                        ItemTemplate="{StaticResource UserTemplateSelector}"
+                        Grid.Row="0"
+                        Margin="20, 0, 20, 0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </Frame>
+        <Button Text="Add User"
+                Command="{Binding AddUserCommand}"
+                Grid.Row="2"
+                Grid.Column="1"/>
+    </Grid>
+</ContentPage>

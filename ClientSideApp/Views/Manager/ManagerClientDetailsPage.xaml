@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.Manager.ManagerClientDetailsPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             xmlns:converters="clr-namespace:ClientSideApp.Converters"
+             x:DataType="viewModels:ManagerClientDetailsViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="Client">
+
+    <ContentPage.Resources>
+        <converters:NullUserDisplayConverter x:Key="NullUserDisplayConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="10*, *, *, *"
+          ColumnDefinitions="*, 30*, *"
+          IsEnabled="{Binding IsNotBusy}">
+        <Frame BorderColor="LightGray"
+               CornerRadius="0"
+               Padding="20, 0, 40, 0"
+               Margin="0"
+               Grid.Row="0"
+               Grid.Column="1">
+            <ScrollView>
+                <Grid RowDefinitions="*, *, *, *, *, *, *"
+                      RowSpacing="15">
+                    <VerticalStackLayout Grid.Row="0">
+                        <Label Text="First Name" />
+                        <Entry Text="{Binding FirstName}" />
+                        <Label Text="{Binding FirstNameError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label Text="Last name" />
+                        <Entry Text="{Binding LastName}" />
+                        <Label Text="{Binding LastNameError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="2">
+                        <Label Text="Email" />
+                        <Entry Text="{Binding Email}"
+                               IsSpellCheckEnabled="False"/>
+                        <Label Text="{Binding EmailError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+                    
+                    <VerticalStackLayout Grid.Row="3">
+                        <Label Text="Phone number" />
+                        <Entry Text="{Binding PhoneNumber}" />
+                        <Label Text="{Binding PhoneNumberError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="4">
+                        <Label Text="Adress" />
+                        <Entry Text="{Binding Address}" />
+                        <Label Text="{Binding AddressError}" TextColor="Red" />
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="5">
+                        <Label Text="Is processed?"
+                               VerticalOptions="Center"
+                               VerticalTextAlignment="Center"/>
+                        <CheckBox IsChecked="{Binding IsProcessed}"/>
+                    </HorizontalStackLayout>
+
+                    <Grid RowDefinitions="*, 2*"
+                          Grid.Row="6">
+                        <Label Text="Worker"
+                               Grid.Row="0"/>
+                        <Picker ItemsSource="{Binding Users}"
+                                SelectedItem="{Binding SelectedUserSession}"
+                                ItemDisplayBinding="{Binding ., Converter={StaticResource NullUserDisplayConverter}}"
+                                Grid.Row="1"/>
+                    </Grid>
+                </Grid>
+            </ScrollView>
+        </Frame>
+
+        <Button Text="Save" Command="{Binding SaveClientCommand}"
+                Grid.Row="2"
+                Grid.Column="1"/>
+    </Grid>
+    
+    <!--<StackLayout Padding="20"
+                 IsEnabled="{Binding IsNotBusy}">
+        <Label Text="First name" />
+        <Entry Text="{Binding FirstName}" />
+        <Label Text="{Binding FirstNameError}" TextColor="Red" />
+
+        <Label Text="Last name" />
+        <Entry Text="{Binding LastName}" />
+        <Label Text="{Binding LastNameError}" TextColor="Red" />
+
+        <Label Text="Email" />
+        <Entry Text="{Binding Email}" />
+        <Label Text="{Binding EmailError}" TextColor="Red" />
+
+        <Label Text="Phone number" />
+        <Entry Text="{Binding PhoneNumber}" />
+        <Label Text="{Binding PhoneNumberError}" TextColor="Red" />
+
+        <Label Text="Adress" />
+        <Entry Text="{Binding Address}" />
+        <Label Text="{Binding AddressError}" TextColor="Red" />
+
+        <HorizontalStackLayout>
+            <Label Text="Is processed?"/>
+            <CheckBox IsChecked="{Binding IsProcessed}"/>
+        </HorizontalStackLayout>
+
+        <Label Text="Worker"/>
+        <Picker ItemsSource="{Binding Users}"
+                SelectedItem="{Binding SelectedUserSession}"
+                ItemDisplayBinding="{Binding ., Converter={StaticResource NullUserDisplayConverter}}"/>
+
+        <Button Text="Save" Command="{Binding SaveClientCommand}" />
+    </StackLayout>-->
+</ContentPage>

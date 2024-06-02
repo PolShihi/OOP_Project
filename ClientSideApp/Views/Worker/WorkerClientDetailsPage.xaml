@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.Worker.WorkerClientDetailsPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             xmlns:models="clr-namespace:MyModel.Models.Entitties;assembly=MyModel"
+             x:DataType="viewModels:WorkerClientDetailsViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="Client order">
+
+    <Grid RowDefinitions="10*, *, *, *"
+      ColumnDefinitions="*, 30*, *"
+      IsEnabled="{Binding IsNotBusy}">
+        <Frame BorderColor="LightGray"
+               CornerRadius="0"
+               Grid.Row="0"
+               Padding="20, 0, 40, 0"
+               Margin="0"
+               Grid.Column="1">
+            <ScrollView>
+                <VerticalStackLayout Spacing="15">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Client info"
+                           FontAttributes="Bold"
+                           FontSize="18"/>
+                        <Frame BorderColor="LightGray">
+                            <Grid RowDefinitions="*, *, *, *"
+                              RowSpacing="15">
+                                <VerticalStackLayout Grid.Row="0">
+                                    <Label Text="Full name"
+                                       FontAttributes="Bold"/>
+                                    <Label Text="{Binding Client.FullName}"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="Email"
+                                       FontAttributes="Bold"/>
+                                    <Label Text="{Binding Client.Email}"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="2">
+                                    <Label Text="Phone number"
+                                       FontAttributes="Bold"/>
+                                    <Label Text="{Binding Client.PhoneNumber}"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="3">
+                                    <Label Text="Address"
+                                       FontAttributes="Bold"/>
+                                    <Label Text="{Binding Client.Address}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Order info"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                        <Frame BorderColor="LightGray">
+                            <Grid RowDefinitions="*, *, *"
+                                  RowSpacing="15">
+
+                                <VerticalStackLayout Grid.Row="0">
+                                    <Label Text="Address" />
+                                    <Entry Text="{Binding OrderAddress}" />
+                                    <Label Text="{Binding OrderAddressError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="Order date" />
+                                    <DatePicker Date="{Binding OrderDate}"/>
+                                    <Label Text="Order time"/>
+                                    <TimePicker Time="{Binding OrderTime}"/>
+                                    <Label Text="{Binding OrderDateError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <Grid RowDefinitions="*, 2*"
+                                      Grid.Row="2">
+                                    <Label Text="Ceremony"
+                                           Grid.Row="0"/>
+                                    <Picker ItemsSource="{Binding Ceremonies}"
+                                            SelectedItem="{Binding SelectedCeremony}"
+                                            ItemDisplayBinding="{Binding Name}"
+                                            Grid.Row="1"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Dead person info"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                        <Frame BorderColor="LightGray">
+                            <Grid RowDefinitions="*, *, *, *, *"
+                                  RowSpacing="15">
+
+                                <VerticalStackLayout Grid.Row="0">
+                                    <Label Text="First Name"/>
+                                    <Entry Text="{Binding DeadPersonFirstName}"/>
+                                    <Label Text="{Binding DeadPersonFirstNameError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="Last Name"/>
+                                    <Entry Text="{Binding DeadPersonLastName}"/>
+                                    <Label Text="{Binding DeadPersonLastNameError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="2">
+                                    <Label Text="Details" />
+                                    <Entry Text="{Binding DeadPersonDetails}" />
+                                    <Label Text="{Binding DeadPersonDetailsError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="3">
+                                    <Label Text="Date of birth" />
+                                    <DatePicker Date="{Binding DeadPersonDateOfBirth}"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="4">
+                                    <Label Text="Date of death" />
+                                    <DatePicker Date="{Binding DeadPersonDateOfDeath}"/>
+                                    <Label Text="{Binding DeadPersonDateOfDeathError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Product orders already added"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                        <CollectionView ItemsSource="{Binding ProductOrdersCompleted}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:ProductOrder}">
+                                    <Frame BorderColor="Black">
+                                        <Grid Padding="5"
+                                              RowDefinitions="*, *, *"
+                                              ColumnDefinitions="13*, *, *">
+                                            <Label Text="{Binding Product.Name}"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   Grid.Row="0"/>
+                                            <Label Text="{Binding Amount, StringFormat='Amount: {0}'}"
+                                                   FontSize="14"
+                                                   Grid.Row="1"
+                                                   Grid.ColumnSpan="3"/>
+                                            <Label Text="{Binding Comment, StringFormat='Comment: {0}'}"
+                                                   FontSize="14"
+                                                   TextColor="Gray"
+                                                   Grid.Row="2"
+                                                   Grid.ColumnSpan="3"/>
+                                            <Button Style="{StaticResource Key=DeleteButton}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center"
+                                                    Grid.Row="0"
+                                                    Grid.Column="2"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkerClientDetailsViewModel}}, Path=DeleteProductOrderCompletedCommand}"
+                                                    CommandParameter="{Binding .}"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Product orders which will be added"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                        <CollectionView ItemsSource="{Binding ProductOrdersAdded}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:ProductOrder}">
+                                    <Frame BorderColor="Black">
+                                        <Grid Padding="5"
+                                              RowDefinitions="*, *, *"
+                                              ColumnDefinitions="13*, *, *">
+                                            <Label Text="{Binding Product.Name}"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   Grid.Row="0"/>
+                                            <Label Text="{Binding Amount, StringFormat='Amount: {0}'}"
+                                                   FontSize="14"
+                                                   Grid.Row="1"
+                                                   Grid.ColumnSpan="3"/>
+                                            <Label Text="{Binding Comment, StringFormat='Comment: {0}'}"
+                                                   FontSize="14"
+                                                   TextColor="Gray"
+                                                   Grid.Row="2"
+                                                   Grid.ColumnSpan="3"/>
+                                            <Button Style="{StaticResource Key=DeleteButton}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center"
+                                                    Grid.Row="0"
+                                                    Grid.Column="2"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkerClientDetailsViewModel}}, Path=DeleteProductOrderAddedCommand}"
+                                                    CommandParameter="{Binding .}"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Add product order"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                        <Frame BorderColor="LightGray">
+                            <Grid RowDefinitions="*, *, *, *, *"
+                                  RowSpacing="15">
+
+                                <Grid RowDefinitions="*, 2*, *"
+                                      Grid.Row="0">
+                                    <Label Text="Product"/>
+                                    <Picker ItemsSource="{Binding Products}"
+                                            SelectedItem="{Binding AddedProductOrderSelectedProduct}"
+                                            ItemDisplayBinding="{Binding Name}"
+                                            Grid.Row="1"/>
+                                    <Label Text="{Binding AddedProductOrderSelectedProductError}" TextColor="Red"
+                                           Grid.Row="2"/>
+                                </Grid>
+
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="Amount"/>
+                                    <Entry Text="{Binding AddedProductOrderAmount}"/>
+                                    <Label Text="{Binding AddedProductOrderAmountError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="2">
+                                    <Label Text="Comment"/>
+                                    <Entry Text="{Binding AddedProductOrderComment}"/>
+                                    <Label Text="{Binding AddedProductOrderCommentError}" TextColor="Red" />
+                                </VerticalStackLayout>
+
+                                <Button Text="Order product"
+                                        Command="{Binding AddProductOrderCommand}"
+                                        Grid.Row="4"/>
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Is order completed?"
+                               VerticalOptions="Center"
+                               VerticalTextAlignment="Center"/>
+                        <CheckBox IsChecked="{Binding IsProcessed}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <Grid ColumnDefinitions="5*, 3*, 2*"
+              Grid.Row="2"
+              Grid.Column="1">
+            <Button Text="Save" Command="{Binding SaveOrderCommand}"
+                    Grid.Column="0"/>
+            <HorizontalStackLayout Grid.Column="2">
+                <Label Text="Total price:  "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding TotalPrice, StringFormat=' {0}'}"
+                       VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
+    
+    
+    <!--<ScrollView IsEnabled="{Binding IsNotBusy}">
+        <StackLayout Padding="20"
+                 IsEnabled="{Binding IsNotBusy}">
+            <Label Text="Order Details"
+               FontAttributes="Bold"/>
+
+            <Label Text="Address" />
+            <Entry Text="{Binding OrderAddress}" />
+            <Label Text="{Binding OrderAddressError}" TextColor="Red" />
+
+            <Label Text="Date" />
+            <DatePicker Date="{Binding OrderDate}"/>
+            <TimePicker Time="{Binding OrderTime}"/>
+            <Label Text="{Binding OrderDateError}" TextColor="Red" />
+
+            <Label Text="Ceremony"/>
+            <Picker ItemsSource="{Binding Ceremonies}"
+                SelectedItem="{Binding SelectedCeremony}"
+                ItemDisplayBinding="{Binding Name}"/>
+
+            <Label Text="DeadPerson"
+               FontAttributes="Bold"/>
+
+            <Label Text="First Name"/>
+            <Entry Text="{Binding DeadPersonFirstName}"/>
+            <Label Text="{Binding DeadPersonFirstNameError}" TextColor="Red" />
+
+            <Label Text="Last Name"/>
+            <Entry Text="{Binding DeadPersonLastName}"/>
+            <Label Text="{Binding DeadPersonLastNameError}" TextColor="Red" />
+
+            <Label Text="Details" />
+            <Entry Text="{Binding DeadPersonDetails}" />
+            <Label Text="{Binding DeadPersonDetailsError}" TextColor="Red" />
+
+            <Label Text="Date of birth" />
+            <DatePicker Date="{Binding DeadPersonDateOfBirth}"/>
+
+            <Label Text="Date of death" />
+            <DatePicker Date="{Binding DeadPersonDateOfDeath}"/>
+            <Label Text="{Binding DeadPersonDateOfDeathError}" TextColor="Red" />
+
+            <Label Text="Product orders completed"
+                   FontAttributes="Bold"/>
+
+            <CollectionView ItemsSource="{Binding ProductOrdersCompleted}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type models:ProductOrder}">
+                        <Frame>
+                            <Grid Padding="5"
+                                  RowDefinitions="*, *, *"
+                                  ColumnDefinitions="*, *">
+                                <Label Text="{Binding Product.Name}"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Amount, StringFormat='Amount: {0}'}"
+                                       FontSize="Small"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Comment, StringFormat='Comment: {0}'}"
+                                       TextColor="Gray"
+                                       FontSize="Small"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Product orders Added"
+                   FontAttributes="Bold"/>
+
+
+            <CollectionView ItemsSource="{Binding ProductOrdersAdded}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type models:ProductOrder}">
+                        <Frame>
+                            <Grid Padding="5"
+                                  RowDefinitions="*, *, *"
+                                  ColumnDefinitions="*, *">
+                                <Label Text="{Binding Product.Name}"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Amount, StringFormat='Amount: {0}'}"
+                                       FontSize="Small"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Comment, StringFormat='Comment: {0}'}"
+                                       TextColor="Gray"
+                                       FontSize="Small"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="New product order"
+               FontAttributes="Bold"/>
+
+            <Label Text="Product"/>
+            <Picker ItemsSource="{Binding Products}"
+                SelectedItem="{Binding AddedProductOrderSelectedProduct}"
+                ItemDisplayBinding="{Binding Name}"/>
+            <Label Text="{Binding AddedProductOrderSelectedProductError}" TextColor="Red" />
+
+            <Label Text="Amount"/>
+            <Entry Text="{Binding AddedProductOrderAmount}"/>
+            <Label Text="{Binding AddedProductOrderAmountError}" TextColor="Red" />
+
+            <Label Text="Comment"/>
+            <Entry Text="{Binding AddedProductOrderComment}"/>
+            <Label Text="{Binding AddedProductOrderCommentError}" TextColor="Red" />
+
+            <Button Text="Order product"
+                Command="{Binding AddProductOrderCommand}"/>
+
+            <Button Text="Full order"
+                Command="{Binding SaveOrderCommand}"/>
+        </StackLayout>
+    </ScrollView>-->
+</ContentPage>

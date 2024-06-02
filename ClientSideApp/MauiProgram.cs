@@ -1,9 +1,9 @@
 ﻿using ClientSideApp.Services;
 using ClientSideApp.ViewModels;
-using ClientSideApp.ViewModels.Startup;
 using ClientSideApp.Views;
-using ClientSideApp.Views.Startup;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Compatibility.Hosting;
+using CommunityToolkit.Maui;
 
 namespace ClientSideApp
 {
@@ -14,24 +14,17 @@ namespace ClientSideApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("fontello.ttf", "Icons");
                 });
 
-            builder.Services.AddSingleton<IUserService, UserService>();
-
-            //Views
-            builder.Services.AddSingleton<LoginPage>();
-            builder.Services.AddTransient<AdminUsersPage>();
-            builder.Services.AddTransient<AdminUserRegistrationPage>();
-
-
-            //View Models
-            builder.Services.AddSingleton<LoginPageViewModel>();
-            builder.Services.AddTransient<AdminUsersViewModel>();
-            builder.Services.AddTransient<AdminUserRegistrationViewModel>();
+            builder.Services.RegisterServices()
+                .RegisterViewModels()
+                .RegisterPages();
 
 #if DEBUG
             builder.Logging.AddDebug();

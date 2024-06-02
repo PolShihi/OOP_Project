@@ -6,11 +6,11 @@ public partial class FlyoutHeaderControl : StackLayout
 	{
 		InitializeComponent();
 
-        if (App.UserDetails != null)
+        if (App.UserSession != null)
         {
-			lblUserName.Text = App.UserDetails.FullName;
-            lblUserEmail.Text = App.UserDetails.Email;
-            lblUserRole.Text = App.UserDetails.Role;
+			lblUserName.Text = App.UserSession.FullName;
+            lblUserEmail.Text = App.UserSession.Email;
+            lblUserRole.Text = App.UserSession.Role;
         }
     }
 }

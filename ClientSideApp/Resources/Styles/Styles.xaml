@@ -49,6 +49,33 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Button" x:Key="EditButton">
+        <Setter Property="ImageSource" Value="{FontImage FontFamily=Icons, Glyph='&#xE800;', Color=Black, Size=14}"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BackgroundColor" Value="#FEDDFFDD"/>
+        <Setter Property="MinimumHeightRequest" Value="10"/>
+        <Setter Property="MinimumWidthRequest" Value="10"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="DeleteButton">
+        <Setter Property="ImageSource" Value="{FontImage FontFamily=Icons, Glyph='&#xE801;', Color=Black, Size=14}"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BackgroundColor" Value="#FEFFDDDD"/>
+        <Setter Property="MinimumHeightRequest" Value="10"/>
+        <Setter Property="MinimumWidthRequest" Value="10"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="EmailButton">
+        <Setter Property="ImageSource" Value="{FontImage FontFamily=Icons, Glyph='&#xE803;', Color=Black, Size=14}"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BackgroundColor" Value="#FEDDDDFF"/>
+        <Setter Property="MinimumHeightRequest" Value="10"/>
+        <Setter Property="MinimumWidthRequest" Value="10"/>
+    </Style>
+
     <Style TargetType="CheckBox">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>

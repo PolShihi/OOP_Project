@@ -4,18 +4,31 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ClientSideApp"
-    Shell.TabBarIsVisible="False"
-    xmlns:startupPages="clr-namespace:ClientSideApp.Views.Startup">
+    xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+    x:DataType="viewModels:AppShellViewModel"
+    Shell.TabBarIsVisible="True"
+    xmlns:pages="clr-namespace:ClientSideApp.Views">
 
-    <ShellContent
-    Title="Login Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
-    ContentTemplate="{DataTemplate startupPages:LoginPage}"
-    Route="LoginPage" />
+
+    <FlyoutItem FlyoutItemIsVisible="False"
+                Route="StartUp">
+        <ShellContent Shell.FlyoutBehavior="Disabled"
+                      Title="Log in"
+                      ContentTemplate="{DataTemplate pages:LoginPage}"
+                      Route="LoginPage" />
+
+        <ShellContent Shell.FlyoutBehavior="Disabled"
+                      Title="Settings"
+                      ContentTemplate="{DataTemplate pages:SettingsPage}"
+                      Route="SettingsPage"/>
+    </FlyoutItem>
 
 
     <Shell.FlyoutFooter>
-        <StackLayout Padding="20">
-            <Button Text="Sign Out" Command="{Binding SignOutCommand}" />
+        <StackLayout Padding="20"
+                     IsEnabled="{Binding IsNotBusy}">
+            <Button Text="Log Out" 
+                    Command="{Binding LogOutCommand}" />
         </StackLayout>
     </Shell.FlyoutFooter>
 

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.Worker.WorkerOrdersPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             xmlns:models="clr-namespace:MyModel.Models.Entitties;assembly=MyModel"
+             x:DataType="viewModels:WorkerOrdersViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="Orders">
+
+    <Grid RowDefinitions="10*, *"
+          ColumnDefinitions="*, 30*, *"
+          IsEnabled="{Binding IsNotBusy}">
+        <Frame BorderColor="LightGray"
+               Grid.Column="1"
+               CornerRadius="0"
+               Padding="0"
+               Margin="0">
+            <CollectionView ItemsSource="{Binding Clients}"
+                            Grid.Row="0"
+                            Margin="20, 0, 20, 0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type models:Client}">
+                        <Frame BorderColor="Black">
+                            <Grid Padding="5"
+                                  RowDefinitions="*, *, *"
+                                  ColumnDefinitions="13*, *, *">
+                                <Label Text="{Binding FullName}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       Grid.Row="0"/>
+                                <Label Text="{Binding Email}"
+                                       FontSize="14"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="3"/>
+                                <Label Text="{Binding PhoneNumber}"
+                                       FontSize="14"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="3"/>
+                                <Button Style="{StaticResource Key=EditButton}"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkerOrdersViewModel}}, Path=EditClientCommand}"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+    </Grid>
+    
+    <!--<Grid RowDefinitions="7*, *"
+          IsEnabled="{Binding IsNotBusy}">
+        <CollectionView ItemsSource="{Binding Clients}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:Client}">
+                    <Frame>
+                        <Grid Padding="5"
+                              RowDefinitions="*, *, *, *"
+                              ColumnDefinitions="*, *">
+                            <Label Text="{Binding FullName}"
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Email}"
+                                   FontSize="Small"
+                                   Grid.Row="1"
+                                   Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding PhoneNumber}"
+                                   FontSize="Small"
+                                   Grid.Row="2"
+                                   Grid.ColumnSpan="2"/>
+                            <Button Text="Edit"
+                                    BackgroundColor="CadetBlue"
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WorkerOrdersViewModel}}, Path=EditClientCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>-->
+</ContentPage>

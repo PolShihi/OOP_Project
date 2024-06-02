@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.SettingsPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             x:DataType="viewModels:SettingsViewModel"
+             Title="Settings">
+    <ScrollView IsEnabled="{Binding IsNotBusy}">
+        <Grid RowDefinitions="*, 11*, *"
+          ColumnDefinitions="*, 6*, *">
+            <Grid RowDefinitions="*, *, *"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Padding="30">
+                <Grid RowDefinitions="*, *, *"
+                      Grid.Row="0"
+                      Padding="0">
+                    <Label Text="Host"
+                           VerticalOptions="End"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Grid.Row="0"/>
+                    <Entry Text="{Binding Host}"
+                           VerticalOptions="Center"
+                           Grid.Row="1"/>
+                </Grid>
+
+                <Grid RowDefinitions="*, *, *"
+                      Grid.Row="1"
+                      Padding="0">
+                    <Label Text="Port"
+                           VerticalOptions="End"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Grid.Row="0"/>
+                    <Entry Text="{Binding Port}"
+                           VerticalOptions="Center"
+                           Grid.Row="1"/>
+                </Grid>
+
+
+                <Grid RowDefinitions="*, *"
+                      Grid.Row="2"
+                      Padding="0">
+                    <Button Text="Save" Command="{Binding SaveSettingsCommand}"
+                            VerticalOptions="End"
+                            Grid.Row="0"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -2,92 +2,150 @@
 
 using ClientSideApp.Controls;
 using ClientSideApp.Views;
+using ClientSideApp.Views.Admin;
+using ClientSideApp.Views.Manager;
+using ClientSideApp.Views.Worker;
 
 namespace ClientSideApp.Models
 {
-    internal class AppConstant
+    public class AppConstant
     {
+        public async static Task LogOut()
+        {
+            App.UserSession = null;
+
+            await Shell.Current.GoToAsync("//StartUp/LoginPage");
+
+            var flyoutItems = Shell.Current.Items.OfType<FlyoutItem>().ToList();
+
+            foreach (var item in flyoutItems)
+            {
+                if (item.Route != "StartUp")
+                {
+                    Shell.Current.Items.Remove(item);
+                }
+            }
+        }
+
         public async static Task AddFlyoutMenusDetails()
         {
-            AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
+            Shell.Current.FlyoutHeader = new FlyoutHeaderControl();
 
-            var adminInfo = AppShell.Current.Items.Where(f => f.Route == nameof(AdminUsersPage)).FirstOrDefault();
-            if (adminInfo != null) AppShell.Current.Items.Remove(adminInfo);
-
-            var managerInfo = AppShell.Current.Items.Where(f => f.Route == nameof(ManagerClientsPage)).FirstOrDefault();
-            if (managerInfo != null) AppShell.Current.Items.Remove(managerInfo);
-
-            var workerInfo = AppShell.Current.Items.Where(f => f.Route == nameof(WorkerClientsPage)).FirstOrDefault();
-            if (workerInfo != null) AppShell.Current.Items.Remove(workerInfo);
-
-
-            if (App.UserDetails.Role == "Admin")
+            if (App.UserSession.Role == "Admin")
             {
                 var flyoutItem = new FlyoutItem()
                 {
-                    Title = "Admin Page",
+                    Title = "Users",
                     Route = nameof(AdminUsersPage),
-                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
                     Items ={
                                 new ShellContent
                                 {
-                                    Title = "Admin Users Page",
                                     ContentTemplate = new DataTemplate(typeof(AdminUsersPage)),
                                 },
                             }
                 };
-                if (!AppShell.Current.Items.Contains(flyoutItem))
-                {
-                    AppShell.Current.Items.Add(flyoutItem);
-                    await Shell.Current.GoToAsync($"//{nameof(AdminUsersPage)}");
-                }
+
+                Shell.Current.Items.Add(flyoutItem);
+
+                await Shell.Current.GoToAsync($"//{nameof(AdminUsersPage)}");
 
             }
 
-            if (App.UserDetails.Role == "Manager")
+            if (App.UserSession.Role == "Manager")
             {
-                var flyoutItem = new FlyoutItem()
+                var flyoutItemCeremonies = new FlyoutItem()
                 {
-                    Title = "Manager Page",
-                    Route = nameof(ManagerClientsPage),
-                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
+                    Title = "Ceremonies",
+                    Route = nameof(ManagerCeremoniesPage),
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
                     Items ={
                                 new ShellContent
                                 {
-                                    Title = "Manager Clients",
+                                    ContentTemplate = new DataTemplate(typeof(ManagerCeremoniesPage)),
+                                },
+                            }
+                };
+
+                var flyoutItemProducts = new FlyoutItem()
+                {
+                    Title = "Products",
+                    Route = nameof(ManagerProductsPage),
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
+                    Items ={
+                                new ShellContent
+                                {
+                                    ContentTemplate = new DataTemplate(typeof(ManagerProductsPage)),
+                                },
+                            }
+                };
+
+                var flyoutItemClients = new FlyoutItem()
+                {
+                    Title = "Clients",
+                    Route = nameof(ManagerClientsPage),
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
+                    Items ={
+                                new ShellContent
+                                {
                                     ContentTemplate = new DataTemplate(typeof(ManagerClientsPage)),
                                 },
                             }
                 };
-                if (!AppShell.Current.Items.Contains(flyoutItem))
-                {
-                    AppShell.Current.Items.Add(flyoutItem);
-                    await Shell.Current.GoToAsync($"//{nameof(ManagerClientsPage)}");
-                }
 
-            }
-
-            if (App.UserDetails.Role == "Worker")
-            {
-                var flyoutItem = new FlyoutItem()
+                var flyoutItemReports = new FlyoutItem()
                 {
-                    Title = "Worker Page",
-                    Route = nameof(WorkerClientsPage),
-                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
-                    Items = {
+                    Title = "Reports",
+                    Route = nameof(ManagerReportsPage),
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
+                    Items ={
                                 new ShellContent
                                 {
-                                    Title = "Worker Clients",
-                                    ContentTemplate = new DataTemplate(typeof(WorkerClientsPage)),
+                                    ContentTemplate = new DataTemplate(typeof(ManagerReportsPage)),
                                 },
                             }
                 };
-                if (!AppShell.Current.Items.Contains(flyoutItem))
-                {
-                    AppShell.Current.Items.Add(flyoutItem);
-                    await Shell.Current.GoToAsync($"//{nameof(WorkerClientsPage)}");
-                }
 
+                Shell.Current.Items.Add(flyoutItemCeremonies);
+                Shell.Current.Items.Add(flyoutItemProducts);
+                Shell.Current.Items.Add(flyoutItemClients);
+                Shell.Current.Items.Add(flyoutItemReports);
+
+                await Shell.Current.GoToAsync($"//{nameof(ManagerCeremoniesPage)}");
+            }
+
+            if (App.UserSession.Role == "Worker")
+            {
+                var flyoutItem = new FlyoutItem()
+                {
+                    Title = "Clients",
+                    Route = nameof(WorkerOrdersPage),
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
+                    Items ={
+                                new ShellContent
+                                {
+                                    ContentTemplate = new DataTemplate(typeof(WorkerOrdersPage)),
+                                },
+                            }
+                };
+
+                var flyoutItemReports = new FlyoutItem()
+                {
+                    Title = "Reports",
+                    Route = nameof(WorkerReportsPage),
+                    FlyoutDisplayOptions = FlyoutDisplayOptions.AsSingleItem,
+                    Items ={
+                                new ShellContent
+                                {
+                                    ContentTemplate = new DataTemplate(typeof(WorkerReportsPage)),
+                                },
+                            }
+                };
+
+                Shell.Current.Items.Add(flyoutItem);
+                Shell.Current.Items.Add(flyoutItemReports);
+
+                await Shell.Current.GoToAsync($"//{nameof(WorkerOrdersPage)}");
             }
         }
     }

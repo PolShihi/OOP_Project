@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientSideApp.Views.LoginPage"
+             xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+             x:DataType="viewModels:LoginViewModel"
+             Title="Log in">
+
+    <ScrollView IsEnabled="{Binding IsNotBusy}">
+        <Grid RowDefinitions="*, 11*, *"
+          ColumnDefinitions="*, 6*, *">
+            <Grid RowDefinitions="*, *, *"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Padding="30">
+                <Grid RowDefinitions="*, *, *"
+                      Grid.Row="0"
+                      Margin="0">
+                    <Label Text="Email"
+                           VerticalOptions="End"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Grid.Row="0"/>
+                    <Entry Text="{Binding Email}"
+                           VerticalOptions="Center"
+                           Grid.Row="1"
+                           IsSpellCheckEnabled="False"/>
+                    <Label Text="{Binding EmailError}" TextColor="Red" 
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Grid.Row="2"/>
+                </Grid>
+
+                <Grid RowDefinitions="*, *, *"
+                      Grid.Row="1"
+                      Padding="0">
+                    <Label Text="Password"
+                           VerticalOptions="End"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Grid.Row="0"/>
+                    <Entry Text="{Binding Password}"
+                           VerticalOptions="Center"
+                           IsPassword="True"
+                           Grid.Row="1"/>
+                    <Label Text="{Binding PasswordError}" TextColor="Red" 
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           Grid.Row="2"/>
+                </Grid>
+
+
+                <Grid RowDefinitions="*, *"
+                      Grid.Row="2"
+                      Padding="0">
+                    <Button Text="Login" Command="{Binding LoginCommand}"
+                            VerticalOptions="End"
+                            Grid.Row="0"/>
+                    <Label Text="{Binding ErrorMessage}" TextColor="Red"
+                           VerticalOptions="Start"
+                           Grid.Row="1"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

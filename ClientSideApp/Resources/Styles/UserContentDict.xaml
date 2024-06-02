@@ -1,29 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModels="clr-namespace:ClientSideApp.ViewModels">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:viewModels="clr-namespace:ClientSideApp.ViewModels"
+                    xmlns:models="clr-namespace:MyModel.Models.DTOs;assembly=MyModel"
+                    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                    xmlns:converters="clr-namespace:ClientSideApp.Converters">
+    
+    
+        <converters:SelectedColorConverter x:Key="SelectedColorConverter"/>
 
-    <DataTemplate x:Key="NotYouUserTemplate">
-        <Frame>
-            <VerticalStackLayout>
-                <Label Text="{Binding FullName}" FontAttributes="Bold"/>
-                <Label Text="{Binding Email}" />
-                <Label Text="{Binding Role, StringFormat='Role: {0}'}" />
-                <Button BackgroundColor="Red"
-                Text="Delete"
-                Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:AdminUsersViewModel}}, Path=DeleteUserCommand}"
-                CommandParameter="{Binding .}"/>
-            </VerticalStackLayout>
+    <DataTemplate x:Key="NotYouUserTemplate"
+                  x:DataType="models:UserSession">
+        <Frame BorderColor="Black">
+            <Grid Padding="5"
+                  RowDefinitions="*, *, *"
+                  ColumnDefinitions="13*, *, *, *"
+                  ColumnSpacing="0">
+                <Label Text="{Binding FullName}"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="1"/>
+                <Label Text="{Binding Email}"
+                       VerticalOptions="Center"
+                       FontSize="14"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="4"/>
+                <Label Text="{Binding Role, StringFormat='Role: {0}'}"
+                       VerticalOptions="Center"
+                       FontSize="14"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="4"/>
+                <Button Style="{StaticResource Key=EditButton}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AdminUsersViewModel}}, Path=EditUserCommand}"
+                        CommandParameter="{Binding .}"/>
+                <Button Style="{StaticResource Key=DeleteButton}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AdminUsersViewModel}}, Path=DeleteUserCommand}"
+                        CommandParameter="{Binding .}"/>
+                <Button Style="{StaticResource Key=EmailButton}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AdminUsersViewModel}}, Path=SendEmailCommand}"
+                        CommandParameter="{Binding .}"/>
+            </Grid>
         </Frame>
+
     </DataTemplate>
 
-    <DataTemplate x:Key="YouUserTemplate">
-        <Frame IsEnabled="False">
-            <VerticalStackLayout>
-                <Label Text="{Binding FullName}" FontAttributes="Bold"/>
-                <Label Text="{Binding Email}" />
-                <Label Text="{Binding Role, StringFormat='Role: {0}'}" />
-            </VerticalStackLayout>
+    <DataTemplate x:Key="YouUserTemplate"
+                  x:DataType="models:UserSession">
+        <Frame BorderColor="Black"
+               IsEnabled="False">
+            <Grid Padding="5"
+                  RowDefinitions="*, *, *"
+                  ColumnDefinitions="7*, *, *">
+                <Label Text="{Binding FullName}"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="1"/>
+                <Label Text="{Binding Email}"
+                       VerticalOptions="Center"
+                       FontSize="14"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"/>
+                <Label Text="{Binding Role, StringFormat='Role: {0}'}"
+                       VerticalOptions="Center"
+                       FontSize="14"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="3"/>
+            </Grid>
         </Frame>
     </DataTemplate>
 
