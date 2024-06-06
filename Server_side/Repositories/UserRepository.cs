@@ -12,8 +12,20 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Server_side.Repositories
 {
-    public class UserRepository(AppDbContext _context, UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager, IConfiguration _config) : IUserRepository
+    public class UserRepository : IUserRepository
     {
+        private readonly AppDbContext _dbContext;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _config;
+
+        public UserRepository(AppDbContext dbContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration config)
+        {
+            _dbContext = dbContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _config = config;
+        }
 
         public async Task<ApiResponse<string>> CreateAccount(RegisterDTO registerDTO)
         {
@@ -235,7 +247,7 @@ namespace Server_side.Repositories
             if (!updateResult.Succeeded)
                 return ApiResponse<string>.ErrorResponse("Error occurred during user update.", 500);
 
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
             return ApiResponse<string>.SuccessResponse("Success.");
         }

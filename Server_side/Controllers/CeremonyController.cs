@@ -9,8 +9,14 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CeremonyController(IRepository<Ceremony> _ceremonyRepository) : ControllerBase
+    public class CeremonyController : ControllerBase
     {
+        private readonly IRepository<Ceremony> _ceremonyRepository;
+
+        public CeremonyController(IRepository<Ceremony> ceremonyRepository)
+        {
+            _ceremonyRepository = ceremonyRepository;
+        }
 
         [HttpGet]
         [Authorize(Roles = "Manager, Worker")]

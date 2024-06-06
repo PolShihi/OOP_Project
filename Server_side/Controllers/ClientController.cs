@@ -11,8 +11,19 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController(IRepository<Client> _clientRepository, UserManager<AppUser> _userManager, IUserRepository _userRepository) : ControllerBase
+    public class ClientController : ControllerBase
     {
+        private readonly IRepository<Client> _clientRepository;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IUserRepository _userRepository;
+
+        public ClientController(IRepository<Client> clientRepository, UserManager<AppUser> userManager, IUserRepository userRepository)
+        {
+            _clientRepository = clientRepository;
+            _userManager = userManager;
+            _userRepository = userRepository;
+        }
+
         [HttpGet]
         [Authorize(Roles = "Manager, Worker")]
         [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<Client>>), StatusCodes.Status200OK)]

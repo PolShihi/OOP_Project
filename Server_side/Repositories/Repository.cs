@@ -54,6 +54,11 @@ namespace Server_side.Repositories
             return await query.Where(filter).ToListAsync(cancellationToken);
         }
 
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Set<T>().FirstOrDefaultAsync(filter, cancellationToken);
+        }
+
         public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _dbContext.Set<T>().AddAsync(entity, cancellationToken);
@@ -72,11 +77,6 @@ namespace Server_side.Repositories
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
-        {
-            return await _dbContext.Set<T>().FirstOrDefaultAsync(filter, cancellationToken);
         }
     }
 }

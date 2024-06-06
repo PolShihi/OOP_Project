@@ -12,8 +12,21 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController(IRepository<Order> _orderRepository, IRepository<Client> _clientRepository, IRepository<Ceremony> _ceremonyRepository, AppDbContext _dbContext) : ControllerBase
+    public class OrderController : ControllerBase
     {
+        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<Client> _clientRepository;
+        private readonly IRepository<Ceremony> _ceremonyRepository;
+        private readonly AppDbContext _dbContext;
+
+        public OrderController(IRepository<Order> orderRepository, IRepository<Client> clientRepository, IRepository<Ceremony> ceremonyRepository, AppDbContext dbContext)
+        {
+            _orderRepository = orderRepository;
+            _clientRepository = clientRepository;
+            _ceremonyRepository = ceremonyRepository;
+            _dbContext = dbContext;
+        }
+
         [HttpGet]
         [Authorize(Roles = "Worker, Manager")]
         [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<Order>>), StatusCodes.Status200OK)]

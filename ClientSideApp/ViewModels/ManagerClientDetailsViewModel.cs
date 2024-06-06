@@ -77,7 +77,11 @@ namespace ClientSideApp.ViewModels
 
         async partial void OnClientChanged(Client? value)
         {
-            if (value is null) return;
+            if (value is null)
+            {
+                await GetUsers();
+                return;
+            }
 
             FirstName = value.FirstName;
             LastName = value.LastName;

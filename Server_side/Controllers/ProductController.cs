@@ -9,8 +9,15 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController(IRepository<Product> _productRepository) : ControllerBase
+    public class ProductController : ControllerBase
     {
+        private readonly IRepository<Product> _productRepository;
+
+        public ProductController(IRepository<Product> productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         [HttpGet]
         [Authorize(Roles = "Manager, Worker")]
         [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<Product>>), StatusCodes.Status200OK)]

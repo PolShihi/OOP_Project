@@ -10,8 +10,17 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController(IUserRepository _userRepository, UserManager<AppUser> _userManager) : ControllerBase
+    public class AccountController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
+        private readonly UserManager<AppUser> _userManager;
+
+        public AccountController(IUserRepository userRepository, UserManager<AppUser> userManager)
+        {
+            _userRepository = userRepository;
+            _userManager = userManager;
+        }
+
         [HttpPost("register")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(ApiResponse<string>), StatusCodes.Status200OK)]

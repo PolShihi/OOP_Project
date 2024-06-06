@@ -9,8 +9,15 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmailController(IEmailService _emailService) : ControllerBase
+    public class EmailController : ControllerBase
     {
+        private readonly IEmailService _emailService;
+
+        public EmailController(IEmailService emailService)
+        {
+            _emailService = emailService;
+        }
+
         [HttpPost("send")]
         [Authorize(Roles = "Admin, Manager, Worker")]
         public async Task<IActionResult> SendEmail(EmailSendRequestDTO emailSendRequest)

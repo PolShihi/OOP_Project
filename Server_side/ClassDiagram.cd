@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Server_side.Controllers.AccountController">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <AssociationLine Name="_userRepository" Type="Server_side.Repositories.IUserRepository">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.126" Y="1.055" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAABAAgAAAAAAAEAAAAAAAAAQABAAAAEAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.CeremonyController">
+    <Position X="8.25" Y="14" Width="1.5" />
+    <AssociationLine Name="_ceremonyRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-5.545" Y="1.188" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAQAgAAAAAAIAAAAABAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\CeremonyController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_ceremonyRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.ClientController">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <AssociationLine Name="_clientRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.373" Y="4.311" Height="0.182" Width="1.075" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_userRepository" Type="Server_side.Repositories.IUserRepository">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.237" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAoAAAAAAAAAAAAAAAAAAAAAAAAAAADgABAAAQ=</HashCode>
+      <FileName>Controllers\ClientController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_clientRepository" />
+      <Field Name="_userRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.DeadPersonController">
+    <Position X="7.25" Y="11.25" Width="1.5" />
+    <AssociationLine Name="_deadPersonRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.06" Y="0.11" Height="0.182" Width="0.996" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_orderRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.098" Y="-0.241" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAEAAAAEAAAAAAAAAAAAAAAASAAAAABAAAAA=</HashCode>
+      <FileName>Controllers\DeadPersonController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_deadPersonRepository" />
+      <Field Name="_orderRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.EmailController">
+    <Position X="11" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\EmailController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_emailService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.OrderController">
+    <Position X="1.25" Y="10.75" Width="1.5" />
+    <AssociationLine Name="_orderRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.242" Y="-0.271" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_clientRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.889" Y="0.624" Height="0.182" Width="0.956" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQABAQAoAAAAAAAAAAAAAAAAAAAAAAABIAAAABAAAAA=</HashCode>
+      <FileName>Controllers\OrderController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_ceremonyRepository" />
+      <Field Name="_orderRepository" />
+      <Field Name="_clientRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.ProductController">
+    <Position X="4.25" Y="14" Width="1.5" />
+    <AssociationLine Name="_productRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.951" Y="1.221" Height="0.182" Width="0.833" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAQAiAAAAAAAAAQAAACAAAAAA=</HashCode>
+      <FileName>Controllers\ProductController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_productRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.ProductOrderController">
+    <Position X="4.25" Y="8" Width="1.5" />
+    <AssociationLine Name="_orderRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.841" Y="0.955" Height="0.182" Width="0.798" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_productRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="5.438" Y="10.194" />
+        <Point X="5.438" Y="10.79" />
+        <Point X="6.026" Y="10.79" />
+        <Point X="6.026" Y="11.404" />
+        <Point X="5.438" Y="11.404" />
+        <Point X="5.438" Y="12" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.918" Y="1.536" Height="0.182" Width="0.866" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_productOrderRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.127" Y="1.536" Height="0.182" Width="1.163" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEIAAAQAAAAAAAIAAAAACAAAAAEIAAABAAAAA=</HashCode>
+      <FileName>Controllers\ProductOrderController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_orderRepository" />
+      <Field Name="_productRepository" />
+      <Field Name="_productOrderRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Controllers.ReportController">
+    <Position X="1.25" Y="6.75" Width="1.5" />
+    <AssociationLine Name="_userRepository" Type="Server_side.Repositories.IUserRepository">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.237" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_reportRepository" Type="Server_side.Repositories.IRepository&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.408" Y="4.289" Height="0.182" Width="1.002" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAABIBgAIAAAAAAAAAAAAgAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userRepository" />
+      <Field Name="_reportRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Server_side.Repositories.EmailService" BaseTypeListCollapsed="true">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQAAAAA=</HashCode>
+      <FileName>Repositories\EmailService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Server_side.Repositories.UserRepository" BaseTypeListCollapsed="true">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <AssociationLine Name="_dbContext" Type="Server_side.Data.AppDbContext" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.75" Y="6.42" />
+        <Point X="12.75" Y="7.75" />
+        <Point X="16" Y="7.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="3.42" Y="1.026" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAJBAAAAEAAQAAAAAAABAAgAAAIIAgAAAAAAAAAIIE=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dbContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Server_side.Repositories.Repository&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="14" Y="2.75" Width="1.5" />
+    <AssociationLine Name="_dbContext" Type="Server_side.Data.AppDbContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.248" Y="2.292" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAQAAAAAAAAAEAAAAAIAgAAAAAAAAAIIE=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_dbContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Server_side.Data.AppDbContext">
+    <Position X="16" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEAAABAAAAAAAAAACAAAAAAEAQAAAAAAACAAAAAAAQ=</HashCode>
+      <FileName>Data\AppDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Server_side.Repositories.IUserRepository" Collapsed="true">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAABAAAAAAIIAgAAAAAAAAAIIE=</HashCode>
+      <FileName>Repositories\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Server_side.Repositories.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="4.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAEAAAAAIAgAAAAAAAAAIIE=</HashCode>
+      <FileName>Repositories\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Server_side.Repositories.IEmailService" Collapsed="true">
+    <Position X="11" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Repositories\IEmailService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

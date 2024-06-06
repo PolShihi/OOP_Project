@@ -9,8 +9,17 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeadPersonController(IRepository<DeadPerson> _deadPersonRepository, IRepository<Order> _orderRepository) : ControllerBase
+    public class DeadPersonController : ControllerBase
     {
+        private readonly IRepository<DeadPerson> _deadPersonRepository;
+        private readonly IRepository<Order> _orderRepository;
+
+        public DeadPersonController(IRepository<DeadPerson> deadPersonRepository, IRepository<Order> orderRepository)
+        {
+            _deadPersonRepository = deadPersonRepository;
+            _orderRepository = orderRepository;
+        }
+
         [HttpGet]
         [Authorize(Roles = "Worker, Manager")]
         [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<DeadPerson>>), StatusCodes.Status200OK)]

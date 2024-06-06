@@ -9,8 +9,19 @@ namespace Server_side.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductOrderController(IRepository<ProductOrder> _productOrderRepository, IRepository<Order> _orderRepository, IRepository<Product> _productRepository) : ControllerBase
+    public class ProductOrderController : ControllerBase
     {
+        private readonly IRepository<ProductOrder> _productOrderRepository;
+        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<Product> _productRepository;
+
+        public ProductOrderController(IRepository<ProductOrder> productOrderRepository, IRepository<Order> orderRepository, IRepository<Product> productRepository)
+        {
+            _productOrderRepository = productOrderRepository;
+            _orderRepository = orderRepository;
+            _productRepository = productRepository;
+        }
+
         [HttpGet]
         [Authorize(Roles = "Worker, Manager")]
         [ProducesResponseType(typeof(ApiResponse<IReadOnlyList<ProductOrder>>), StatusCodes.Status200OK)]

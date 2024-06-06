@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClientSideApp.ViewModels.AdminUserDetailsViewModel">
+    <Position X="11" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUBAAAAAEgAAAEAAgHAAAABAAAAAAAAAAAFAAAEAAE=</HashCode>
+      <FileName>ViewModels\AdminUserDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClientSideApp.ViewModels.AdminUsersViewModel">
+    <Position X="8.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAAAAAAAAEAgAAAAAAAgAAAAAgAAAAAAAAAgA=</HashCode>
+      <FileName>ViewModels\AdminUsersViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_unitOfWork" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClientSideApp.Views.Admin.AdminUserDetailsPage">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Admin\AdminUserDetailsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_viewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClientSideApp.Views.Admin.AdminUsersPage">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Admin\AdminUsersPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_viewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClientSideApp.ViewModels.BaseViewModel">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ClientSideApp.Services.IUnitOfWork">
+    <Position X="8" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAABAAAAAEIACAAIAAAAAAAQAAAEAAAACAAA=</HashCode>
+      <FileName>Services\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
